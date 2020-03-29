@@ -2,8 +2,9 @@ using System;
 using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using ExerciseServices.Repositories;
+using ExerciseServices.Errors;
 using ExerciseServices.DTOs;
+using ExerciseServices.Repositories;
 using ExerciseServices.Services;
 
 namespace ExerciseServices.Controllers
@@ -31,8 +32,12 @@ namespace ExerciseServices.Controllers
     public IActionResult Create(SessionCreateDTO sessionDto)
     {
       var user = _userRepository.GetByUsername(sessionDto.userName);
+
+      if (user == null) throw new NotFoundError("User not found!");
+      if (!user.Authenticate(sessionDto.password)) throw new ValidationError("Incorrect Password!");
+
       var token = _userJwtService.Call(user);
-      Console.Write("wow");
+
       return new ContentResult() {
         Content = JsonSerializer.Serialize(new { token = token }),
         StatusCode = 201,

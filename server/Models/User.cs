@@ -34,6 +34,9 @@ namespace ExerciseServices.Models
       PasswordConfirmation = null;
     }
 
+    public bool Authenticate(string password) =>
+      BCrypt.Net.BCrypt.Verify(password, PasswordDigest);
+
     public UserGetDTO ToDTO() => new UserGetDTO()
     {
       id = Id,
