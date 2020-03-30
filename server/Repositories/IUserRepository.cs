@@ -8,7 +8,7 @@ namespace ExerciseServices.Repositories
     IEnumerable<User> GetUsers();
 
     User Get(string id);
-    User GetByUsername(string username);
+    User GetByEmail(string email);
 
     User Create(User user);
 

@@ -1,9 +1,15 @@
-import leftPad from './leftpad';
+import regeneratorRuntime from 'regenerator-runtime'
 
-const serNos = [6934, 23111, 23114, 1001, 211161, 'oh hey what????'];
-const partEl = document.getElementById('part-list');
-const strList = serNos.reduce(
-  (acc, element) => acc += `<li>${leftPad(element, 8, '0')}</li>`, ''
-);
+import ko from "knockout"
+import LoginView from './views/LoginView'
+import applyCustomKnockoutBindings from './customKnockoutBindings'
 
-partEl.innerHTML = strList;
+applyCustomKnockoutBindings()
+
+const appBody = document.getElementById('APPLICATION_BODY')
+console.log('Application Body', appBody)
+
+const view = LoginView()
+
+appBody.innerHTML = view.html;
+ko.applyBindings(new view.viewModel())

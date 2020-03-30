@@ -5,15 +5,25 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Webpack & Babel Demonstration</title>
+  <title>Exercise App</title>
 </head>
 
 <body>
-  <main>
-    <h1>Parts List</h1>
-    <ol id="part-list"></ol>
-  </main>
+  <div id='APPLICATION_BODY'>Javascript failed to load</div>
+  <noscript>This application requires javascript</noscript>
+
+  <!-- UIkit CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.3.7/dist/css/uikit.min.css" />
+  
+  <!-- UIkit JS -->
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.3.7/dist/js/uikit.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.3.7/dist/js/uikit-icons.min.js"></script>
+
+  <!-- Application JS -->
   <script src="./js/bundle.js" charset="utf-8"></script>
+  
+  <!-- Application CSS -->
+  <link rel="stylesheet" href="./css/bundle.css" />
 </body>
 
 </html>

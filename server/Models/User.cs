@@ -12,15 +12,15 @@ namespace ExerciseServices.Models
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
     public string Id { get; set; }
-    public string UserName { get; set; }
+    public string Email { get; set; }
     [BsonIgnore]
     public string Password { get; set; }
     [BsonIgnore]
     public string PasswordConfirmation { get; set; }
     public string PasswordDigest { get; set; }
-    public User(string userName, string password, string passwordConfirmation)
+    public User(string email, string password, string passwordConfirmation)
     {
-      UserName = userName;
+      Email = email;
       Password = password;
       PasswordConfirmation = passwordConfirmation;
 
@@ -40,7 +40,7 @@ namespace ExerciseServices.Models
     public UserGetDTO ToDTO() => new UserGetDTO()
     {
       id = Id,
-      userName = UserName
+      email = Email
     };
 
     private bool _IsValid()

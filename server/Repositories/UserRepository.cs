@@ -24,8 +24,8 @@ namespace ExerciseServices.Repositories
     public User Get(string id) =>
       _users.Find<User>(user => user.Id == id).FirstOrDefault();
 
-    public User GetByUsername(string username) =>
-      _users.Find<User>(user => user.UserName == username).FirstOrDefault();
+    public User GetByEmail(string email) =>
+      _users.Find<User>(user => user.Email == email).FirstOrDefault();
 
     public User Create(User userIn)
     {
@@ -48,7 +48,7 @@ namespace ExerciseServices.Repositories
 
     private bool IsValid(User userIn)
     {
-      return !_users.Find<User>(user => user.UserName == userIn.UserName).Any();
+      return !_users.Find<User>(user => user.Email == userIn.Email).Any();
     }
   }
 }

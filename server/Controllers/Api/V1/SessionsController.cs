@@ -31,7 +31,7 @@ namespace ExerciseServices.Controllers
     [HttpPost]
     public IActionResult Create(SessionCreateDTO sessionDto)
     {
-      var user = _userRepository.GetByUsername(sessionDto.userName);
+      var user = _userRepository.GetByEmail(sessionDto.email);
 
       if (user == null) throw new NotFoundError("User not found!");
       if (!user.Authenticate(sessionDto.password)) throw new ValidationError("Incorrect Password!");

@@ -17,6 +17,7 @@ namespace ExerciseServices.Errors
         var exception = (IExerciseAppError)context.Exception;
         statusCode = exception.Status;
         body = exception.ToJsonBytes();
+        context.HttpContext.Response.ContentLength = body.Length;
       }
 
       context.HttpContext.Response.ContentType = "application/json";

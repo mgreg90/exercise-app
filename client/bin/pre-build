@@ -1,6 +1,13 @@
 #!/usr/bin/env sh
 
 echo 'Running pre-build...'
-mkdir -p public
+mkdir -p public/css
 cp index.html public/index.html
+[ -f public/css/bundle.css ] && rm public/css/bundle.css
+touch public/css/bundle.css
+for f in $(find src/css -name '*.css'); do
+  cat $f >> public/css/bundle.css
+  echo '\n' >> public/css/bundle.css
+done;
+
 echo 'pre-build Completed!'

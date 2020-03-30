@@ -20,11 +20,24 @@ namespace ExerciseServices
             Configuration = configuration;
         }
 
+        private readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // CORS
+            services.AddCors(options =>
+            {
+                options.AddPolicy(MyAllowSpecificOrigins, builder =>
+                {
+                    builder.WithOrigins("http://localhost:8080")
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();
+                });
+            });
+
+            // Error Filter
             services.AddControllers(options => {
                 options.Filters.Add(typeof(ErrorFilter));
             });
@@ -73,6 +86,8 @@ namespace ExerciseServices
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseCors(MyAllowSpecificOrigins);
 
             app.UseEndpoints(endpoints =>
             {
