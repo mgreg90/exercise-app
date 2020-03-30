@@ -1,15 +1,12 @@
 import regeneratorRuntime from 'regenerator-runtime'
+import page from "page"
 
-import ko from "knockout"
-import LoginView from './views/LoginView'
-import applyCustomKnockoutBindings from './customKnockoutBindings'
+import applyCustomKnockoutBindings from './misc/customKnockoutBindings'
+import registerRoutes, { routes } from './misc/routes'
 
 applyCustomKnockoutBindings()
 
 const appBody = document.getElementById('APPLICATION_BODY')
-console.log('Application Body', appBody)
+registerRoutes(appBody)
 
-const view = LoginView()
-
-appBody.innerHTML = view.html;
-ko.applyBindings(new view.viewModel())
+page(routes.LOGIN)
