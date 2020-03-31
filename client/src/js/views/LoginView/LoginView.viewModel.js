@@ -1,4 +1,4 @@
-import ko from "knockout"
+import ko, { bindingEvent } from "knockout"
 import page from "page"
 
 import sessionsApi from '../../api/controllers/sessionsApi'

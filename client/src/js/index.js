@@ -9,4 +9,10 @@ applyCustomKnockoutBindings()
 const appBody = document.getElementById('APPLICATION_BODY')
 registerRoutes(appBody)
 
-page(routes.LOGIN)
+let route = routes.HOME
+const hashPath = window.location.hash?.slice(1)
+if (hashPath !== '/') route = hashPath
+
+console.log(route)
+
+page(route)

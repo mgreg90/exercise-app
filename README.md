@@ -12,6 +12,13 @@ with the tech stack that I'll be using at my new job. Eventually I may build it
 out to be something more complete.  I'm trying to learn C#/.Net, NUnit,
 Knockout.js, and MongoDB.
 
+## Setup
+
+TODO
+For local development, symlink the built client application to the server's
+wwwroot folder:
+`ln -s /path/to/projects/exercise-app/client/public/ /Users/mikegregory/dev-projects/exercise-app/server/wwwroot`
+
 ## Client
 
 Run `npm run start` to run the client application.

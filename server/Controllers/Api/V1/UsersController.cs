@@ -31,5 +31,11 @@ namespace ExerciseServices.Controllers
       user = _userRepository.Create(user);
       return Ok(user.ToDTO());
     }
+
+    [HttpGet]
+    public IActionResult Show()
+    {
+      return Ok(new { Hey = "dog"});
+    }
   }
 }

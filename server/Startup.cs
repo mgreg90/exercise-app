@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using System.IO;
 
 namespace ExerciseServices
 {
@@ -93,6 +94,20 @@ namespace ExerciseServices
             {
                 endpoints.MapControllers();
             });
+
+            // Redirect non /api calls to render the UI
+            app.Use(async (context, next) =>
+            {
+                await next();
+                var path = context.Request.Path.Value;
+
+                if (!path.StartsWith("/api") && !Path.HasExtension(path))
+                {
+                    context.Response.Redirect($"/index.html#{path}");
+                    return;
+                }
+            });
+            app.UseStaticFiles();
         }
     }
 }
