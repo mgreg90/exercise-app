@@ -21,6 +21,7 @@ export const routes = {
   LOGIN: '/login',
   SIGNUP: '/signup',
   HOME: '/home',
+  NEW_WORKOUT: '/workouts/new',
   NOT_FOUND: '*'
 }
 
@@ -32,6 +33,7 @@ const registerRoutes = (element) => {
   router.register(routes.LOGIN, () => renderView(element, LoginView()))
   router.register(routes.SIGNUP, () => renderView(element, SignupView()))
   router.register(routes.HOME, () => renderView(element, HomeView()))
+  router.register(routes.NEW_WORKOUT, () => renderView(element, NewWorkoutView()))
   router.register(routes.NOT_FOUND, () => renderView(element, NotFoundView()))
   router.finish()
 }

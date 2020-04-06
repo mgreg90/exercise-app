@@ -9,7 +9,7 @@ class Session {
 
   setToken(token) {
     window.sessionStorage.setItem(TOKEN_KEY, token)
-    this._token = _fetchAndParseToken(token)
+    this._token = this._fetchAndParseToken(token)
   }
 
   isValid() {
