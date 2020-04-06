@@ -10,7 +10,7 @@ namespace ExerciseServices.Services
 {
   public class UserJWTService: IUserJWTService
   {
-    private const int TokenDaysValid = 7; // days
+    private const int TokenDaysValid = 7;
     private string Secret;
     public UserJWTService(IJwtConfiguration jwtConfig)
     {

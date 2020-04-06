@@ -24,7 +24,7 @@ namespace ExerciseServices.Models
       Password = password;
       PasswordConfirmation = passwordConfirmation;
 
-      if (!_IsValid()) throw new ValidationError("Invalid Password");
+      if (!IsValid()) throw new ValidationError("Invalid Password");
     }
 
     public void HashPassword()
@@ -43,10 +43,10 @@ namespace ExerciseServices.Models
       email = Email
     };
 
-    private bool _IsValid()
-    {
-      return Password.Length >= MinPasswordLength
+    public bool IsValid() =>
+      !string.IsNullOrEmpty(Email)
+        && !string.IsNullOrEmpty(Password)
+        && Password.Length >= MinPasswordLength
         && Password == PasswordConfirmation;
-    }
   }
 }

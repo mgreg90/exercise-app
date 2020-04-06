@@ -48,7 +48,10 @@ namespace ExerciseServices.Repositories
 
     private bool IsValid(User userIn)
     {
-      return !_users.Find<User>(user => user.Email == userIn.Email).Any();
+      return (
+        userIn.IsValid()
+        && !_users.Find<User>(user => user.Email == userIn.Email).Any()
+      );
     }
   }
 }

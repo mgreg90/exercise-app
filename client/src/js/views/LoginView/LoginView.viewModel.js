@@ -1,30 +1,35 @@
-import ko, { bindingEvent } from "knockout"
-import page from "page"
+import ko from "knockout"
 
 import sessionsApi from '../../api/controllers/sessionsApi'
 import { routes } from '../../misc/routes'
 import router from "../../misc/router";
+import session from "../../misc/session"
+import { getQueryParams } from "../../misc/queryString";
 
 class LoginViewModel {
   constructor() {
+    const { errorMessage = '' } = getQueryParams()
     this.email = ko.observable('');
     this.password = ko.observable('');
-    this.validationError = ko.observable('');
+    this.validationError = ko.observable(errorMessage);
   }
 
   async submitHandler() {
     const elementIds = ['LoginView-input-email', 'LoginView-input-password']
     try {
-      const response = await sessionsApi.create(this.email(), this.password())
-      window.token = response.token
+      const response = await sessionsApi.create({
+        email: this.email(),
+        password: this.password()
+      })
+      session.setToken(response.token)
+      const token = session.getToken()
       
       elementIds.forEach(id => {
         const element = document.getElementById(id)
         element.classList.remove('uk-form-danger')
         element.classList.add('uk-form-success')
       })
-      
-      console.log('response', response)
+
       this.validationError('')
       router.update(routes.HOME)
 

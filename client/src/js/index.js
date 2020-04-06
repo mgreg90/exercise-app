@@ -3,6 +3,7 @@ import page from "page"
 
 import applyCustomKnockoutBindings from './misc/customKnockoutBindings'
 import registerRoutes, { routes } from './misc/routes'
+import router from './misc/router'
 
 applyCustomKnockoutBindings()
 
@@ -13,6 +14,4 @@ let route = routes.HOME
 const hashPath = window.location.hash?.slice(1)
 if (hashPath !== '/') route = hashPath
 
-console.log(route)
-
-page(route)
+router.update(route)

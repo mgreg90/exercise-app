@@ -1,4 +1,3 @@
-import page from 'page'
 import ko from 'knockout'
 
 import router from './router'
@@ -24,6 +23,10 @@ export const routes = {
   HOME: '/home',
   NOT_FOUND: '*'
 }
+
+export const unauthenticatedRoutes = [
+  routes.LOGIN, routes.SIGNUP, routes.NOT_FOUND
+]
 
 const registerRoutes = (element) => {
   router.register(routes.LOGIN, () => renderView(element, LoginView()))

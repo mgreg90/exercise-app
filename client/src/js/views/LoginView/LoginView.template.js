@@ -31,6 +31,7 @@ const html = /*html*/`
         </fieldset>
         <p class="error-message"><span data-bind="text: validationError"></span></p>
         <button data-bind="click: submitHandler">Submit</button>
+        <a class="uk-link-text" href="/signup">Sign Up</a>
       </form>
     </div>
   </div>

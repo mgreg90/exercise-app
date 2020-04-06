@@ -104,7 +104,6 @@ namespace ExerciseServices
                 if (!path.StartsWith("/api") && !Path.HasExtension(path))
                 {
                     context.Response.Redirect($"/index.html#{path}");
-                    return;
                 }
             });
             app.UseStaticFiles();

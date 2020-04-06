@@ -1,6 +1,6 @@
 import { baseUrl, basePostRequest } from '../apiBase'
 
-const url = `${baseUrl}/sessions`
+const url = `${baseUrl}/users`
 const sessionsApi = {
   create: async (body) => basePostRequest(url, body)
 }
