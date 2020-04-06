@@ -39,7 +39,7 @@ namespace ExerciseServices.Controllers
       var token = _userJwtService.Call(user);
 
       return new ContentResult() {
-        Content = JsonSerializer.Serialize(new { token = token }),
+        Content = JsonSerializer.Serialize(new { token = token, email = user.Email }),
         StatusCode = 201,
         ContentType = "application/json"
       };

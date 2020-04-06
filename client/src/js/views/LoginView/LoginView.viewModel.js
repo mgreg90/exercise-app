@@ -22,7 +22,6 @@ class LoginViewModel {
         password: this.password()
       })
       session.setToken(response.token)
-      const token = session.getToken()
       
       elementIds.forEach(id => {
         const element = document.getElementById(id)

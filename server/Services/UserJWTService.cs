@@ -34,7 +34,8 @@ namespace ExerciseServices.Services
       {
         Subject = new ClaimsIdentity(new Claim[]
         {
-          new Claim(ClaimTypes.Name, user.Id)
+          new Claim(ClaimTypes.NameIdentifier, user.Id),
+          new Claim(ClaimTypes.Name, user.Email)
         }),
         Expires = DateTime.UtcNow.AddDays(TokenDaysValid),
         SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)

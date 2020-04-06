@@ -9,7 +9,7 @@ class Session {
 
   setToken(token) {
     window.sessionStorage.setItem(TOKEN_KEY, token)
-    this._token = jwt_decode(token)
+    this._token = _fetchAndParseToken(token)
   }
 
   isValid() {
@@ -32,7 +32,7 @@ class Session {
   }
 
   _isValid() {
-    const expirationTime = this._token?.exp
+    const expirationTime = this._token?.expirationTime
     const currentTime = new Date().getTime() / 1000
 
     if (!expirationTime) return false
@@ -40,11 +40,16 @@ class Session {
     return currentTime < expirationTime
   }
 
-  _fetchAndParseToken() {
-    const token = window.sessionStorage.getItem(TOKEN_KEY)
+  _fetchAndParseToken(token = null) {
+    token = token || window.sessionStorage.getItem(TOKEN_KEY)
     if (!token) return null
 
-    return jwt_decode(token)
+    token = jwt_decode(token)
+    return {
+      email: token.unique_name,
+      id: token.nameid,
+      expirationTime: token.exp
+    }
   }
 }
 
